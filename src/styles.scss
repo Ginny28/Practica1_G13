@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+
+/*VARIABLES*/
+@import "assets/saas/variables";
+
+
+/* LIBRERIAS AGREGADAS AL PACKAGE.JSON */
+$fa-font-path: "../node_modules/@fortawesome/fontawesome-free/webfonts";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/solid.scss";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/regular.scss";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/brands.scss";
+@import "../node_modules/@fortawesome/fontawesome-free/scss/v4-shims.scss";
+
+@import "../node_modules/bootstrap/scss/bootstrap.scss";
+
+/*OTROS ARCHIVOS POSTERIORES A LAS LIBRERIAS*/
+
+/*ESPECIFICOS DE TEMPLATE*/
+@import "assets/saas/mixins";
+@import "assets/saas/global";
+@import "assets/saas/utilities";
+
+
+/*MENUS, FOOTER, etc*/
+@import "assets/saas/dropdowns";
+@import "assets/saas/navs";
+@import "assets/saas/cards";
+@import "assets/saas/footer";

@@ -1,0 +1,38 @@
+<h1>-- --- .-. ... .</h1>
+
+<p-card header="Morse Encoder ">
+    <div class="row">
+        <br>
+        <div class="col-md-12">
+          <div class="input-group">
+            <input type="text" class="form-control" id="buscar" [(ngModel)]="texto"
+              placeholder="Ingrese texto a convertir" (keydown.enter)="encoderMorseToText()" />
+            <span class="input-group-btn">
+              <button type="button" (click)="encoderMorseToText()" class="btn btn-primary">
+                    <i class="fas fa-text-width"></i>  
+                </button>
+              <button type="button" class="btn btn-success float-right" (click)="history()" title="Historial"><i class="fas fa-search"></i></button>
+            </span>
+          </div>
+        </div>
+       
+      </div>
+      <br>
+      
+<p-table  *ngIf="flagTable"  [columns]="cols" [value]="datos" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns">
+                    {{col.header}}
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr [pSelectableRow]="rowData">
+                <td *ngFor="let col of columns">
+                    {{rowData[col.field]}}
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-card>
