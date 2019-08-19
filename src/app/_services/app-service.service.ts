@@ -1,7 +1,7 @@
 import { UtilServiceService } from './util-service.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -21,11 +21,28 @@ export class AppServiceService {
 
 
   getMorseEncodre(body: any): Observable<any> {
-    return this.http.post(`${'https://3n2bjmr03a.execute-api.us-east-1.amazonaws.com/Inicial/user'}`,body)
+   /* return this.http.post(`${'https://3n2bjmr03a.execute-api.us-east-1.amazonaws.com/Inicial/user'}`,body)
       .pipe(
         catchError(e => this.util.handleError(e))
-      );
+      );*/
+
+      var httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type':  'application/json'
+        })
+      }
+      
+      return this.http.post<any>(`${'/Inicial/user'}`,body)
+        .pipe(
+          catchError(e => this.util.handleError(e))
+        );
   }
+
+
+
+
+
+
 
   public getFile(file: any): Observable<any> {
     return this.http.get<any>(file)

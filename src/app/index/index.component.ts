@@ -38,7 +38,7 @@ export class IndexComponent implements OnInit {
     {
       this.flagTable =false;
       this.bodyMap = {
-        id: 1,
+        id: "1",
         firstname : this.texto,
         lastname: this.texto
       };
