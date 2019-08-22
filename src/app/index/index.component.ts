@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppServiceService } from '../_services/app-service.service';
-import { Logs } from 'selenium-webdriver';
 import { Historial } from './historial';
 
 
