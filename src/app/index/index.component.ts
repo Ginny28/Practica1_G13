@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { AppServiceService } from '../_services/app-service.service';
+import { Logs } from 'selenium-webdriver';
+import { Historial } from './historial';
 
 
-interface Historial{
-  nombre1: any;
-  nombre2: any;
-  nombre3: any;
-}
 
+declare var swal: any;
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -15,19 +13,21 @@ interface Historial{
 })
 export class IndexComponent implements OnInit {
 
+  public tmp = new Historial();
   bodyMap: any;
   texto: any;
   fileContent: any;
-  datos: Historial[];
+  conter = 1;
+  datos: Historial[] = [];
   cols: any[];
   flagTable = false;
 
   
   constructor(private appService: AppServiceService) { 
     this.cols = [
-      {field: 'nombre1', header: 'Dato1'},
-      {field: 'nombre2', header: 'Dato2'},
-      {field: 'nombre3', header: 'Dato3'}
+      {field: 'id', header: 'Número'},
+      {field: 'word', header: 'Palabra'},
+      {field: 'status', header: 'Status'}
     ]
 
   }
@@ -36,6 +36,7 @@ export class IndexComponent implements OnInit {
   }
     encoderMorseToText()
     {
+        
       this.flagTable =false;
       this.bodyMap = {
         id: "1",
@@ -45,20 +46,25 @@ export class IndexComponent implements OnInit {
       this.appService.getMorseEncodre(this.bodyMap)
         .subscribe(
           (res: any) => {
-            console.log("resultado" + res);
+            let tmps = new Historial();
+            tmps.id = this.conter;
+            tmps.word = this.texto;  
+            tmps.status = 'Ok';
+            this.datos.push(tmps);
+            this.conter = this.conter + 1 ;
+            swal.fire(
+              'Good job!',
+              'Se envió el texto',
+              'success'
+            )
           }
         );
+        
       
     }
 
     history(){
       this.flagTable = true;
-      var _fileURL = '../../assets/history.json';
-      this.appService.getFile(_fileURL)
-      .subscribe((res:any )=> {
-        this.datos = res.datos;
-      } );
-  
     }
     
   
